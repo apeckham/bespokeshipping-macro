@@ -54,4 +54,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
         'currency' => 'USD'
         ]], $actual);
   }
+
+  public function testInvalidZips()
+  {
+    $actual = calculateshipping([
+        'destination' => ['country' => 'US', 'postal_code' => '00000'],
+        'items' => ['0' => [], '1' => []]
+        ]);
+
+    $this->assertEquals([], $actual);
+  }
 }
