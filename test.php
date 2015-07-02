@@ -14,8 +14,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
   {
     $actual = calculateshipping([
         'destination' => ['country' => 'US', 'postal_code' => '90210'],
-        'items' => ['0' => [], '1' => []],
-        'currency' => 'AUD',
+        'items' => ['0' => [], '1' => []]
         ]);
 
     $this->assertEquals([[
@@ -30,13 +29,27 @@ class TestCase extends \PHPUnit_Framework_TestCase
   {
     $actual = calculateshipping([
         'destination' => ['country' => 'US', 'postal_code' => '10001'],
-        'items' => ['0' => [], '1' => []],
-        'currency' => 'AUD',
+        'items' => ['0' => [], '1' => []]
         ]);
 
     $this->assertEquals([[
         'service_name' => 'USPS Priority Mail',
         'service_code' => 'USPS-ZONE-3',
+        'total_price' => 10000,
+        'currency' => 'USD'
+        ]], $actual);
+  }
+
+  public function test96962()
+  {
+    $actual = calculateshipping([
+        'destination' => ['country' => 'US', 'postal_code' => '96962'],
+        'items' => ['0' => [], '1' => []]
+        ]);
+
+    $this->assertEquals([[
+        'service_name' => 'USPS Priority Mail',
+        'service_code' => 'USPS-ZONE-8',
         'total_price' => 10000,
         'currency' => 'USD'
         ]], $actual);
