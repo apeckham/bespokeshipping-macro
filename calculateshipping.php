@@ -1,3 +1,4 @@
+<?php
 /* This macro will be parsed as PHP code (see http://www.php.net)
 
 The calculateshipping function is called every time a shipping calculation request is made by Shopify.
@@ -104,13 +105,14 @@ function calculateshipping($DATA) {
 	)
 
 	//this is how you insert a rate
+	*/
+
 	$_RATES[] = array(
 		"service_name" => "International Shipping", //this is what the customer will see
 		"service_code" => "AUSPOST_INT", //can be anything you like
 		"total_price" => 10000, //in cents
 		"currency" => "AUD",
 	);
-	*/
 
 	return $_RATES;
 
