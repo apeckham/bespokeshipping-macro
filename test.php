@@ -4,11 +4,19 @@ require './calculateshipping.php';
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-  public function testTest()
+  public function testAustralia() {
+    $this->assertEquals(array(), calculateshipping(array(
+      'destination' => array(
+        'country' => 'AU'
+      )
+    )));
+  }
+
+  public function testUS()
   {
     $data = array(
         'destination' => array(
-          'country' => 'AU',
+          'country' => 'US',
           'postal_code' => '2000',
           ),
         'items' => array(

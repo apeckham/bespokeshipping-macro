@@ -11,12 +11,14 @@ function calculateshipping($DATA) {
 
 	$_RATES = array();
 
-	$_RATES[] = array(
-		"service_name" => "USPS Priority Mail",
-		"service_code" => "USPS_PRIORITY_MAIL",
-		"total_price" => 10000,
-		"currency" => "USD"
-	);
+	if ($DATA['destination']['country'] == 'US') {
+		$_RATES[] = array(
+			"service_name" => "USPS Priority Mail",
+			"service_code" => "USPS_PRIORITY_MAIL",
+			"total_price" => 10000,
+			"currency" => "USD"
+		);
+	}
 
 	return $_RATES;
 
