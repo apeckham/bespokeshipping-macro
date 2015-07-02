@@ -19,7 +19,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     $this->assertEquals([[
         'service_name' => 'USPS Priority Mail',
         'service_code' => 'USPS-ZONE-8',
-        'total_price' => 10000,
+        'total_price' => 997,
         'currency' => 'USD'
         ]], $actual);
   }
@@ -33,7 +33,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     $this->assertEquals([[
         'service_name' => 'USPS Priority Mail',
         'service_code' => 'USPS-ZONE-3',
-        'total_price' => 10000,
+        'total_price' => 544,
         'currency' => 'USD'
         ]], $actual);
   }
@@ -47,7 +47,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     $this->assertEquals([[
         'service_name' => 'USPS Priority Mail',
         'service_code' => 'USPS-ZONE-8',
-        'total_price' => 10000,
+        'total_price' => 997,
         'currency' => 'USD'
         ]], $actual);
   }
