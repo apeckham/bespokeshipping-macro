@@ -65,6 +65,20 @@ class TestCase extends \PHPUnit_Framework_TestCase
         ]], $actual);
   }
 
+  public function testZone1()
+  {
+    $actual = calculateshipping([
+        'destination' => ['country' => 'US', 'postal_code' => '14607']
+        ]);
+
+    $this->assertEquals([[
+        'service_name' => 'USPS Priority Mail',
+        'service_code' => 'USPS-ZONE-1',
+        'total_price' => 532,
+        'currency' => 'USD'
+        ]], $actual);
+  }
+
   public function testUnservedZip()
   {
     $actual = calculateshipping([
