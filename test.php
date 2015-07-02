@@ -6,27 +6,17 @@ class TestCase extends \PHPUnit_Framework_TestCase
 {
   public function testAustralia() {
     $this->assertEquals(array(), calculateshipping(array(
-      'destination' => array(
-        'country' => 'AU'
-      )
-    )));
+            'destination' => array('country' => 'AU')
+            )));
   }
 
   public function testUS()
   {
     $data = array(
-        'destination' => array(
-          'country' => 'US',
-          'postal_code' => '2000',
-          ),
-        'items' => array(
-            '0' => array(
-              ),
-            '1' => array(
-              ),
-            ),
-            'currency' => 'AUD',
-            );
+        'destination' => array('country' => 'US', 'postal_code' => '2000'),
+        'items' => array('0' => array(), '1' => array()),
+        'currency' => 'AUD',
+        );
 
     $this->assertEquals(
         array(
