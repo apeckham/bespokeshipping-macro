@@ -13,8 +13,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function test90210()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '90210'],
-        'items' => ['0' => [], '1' => []]
+        'destination' => ['country' => 'US', 'postal_code' => '90210']
         ]);
 
     $this->assertEquals([[
@@ -28,8 +27,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function test10001()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '10001'],
-        'items' => ['0' => [], '1' => []]
+        'destination' => ['country' => 'US', 'postal_code' => '10001']
         ]);
 
     $this->assertEquals([[
@@ -43,8 +41,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function test96962()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '96962'],
-        'items' => ['0' => [], '1' => []]
+        'destination' => ['country' => 'US', 'postal_code' => '96962']
         ]);
 
     $this->assertEquals([[
@@ -58,8 +55,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function testInvalidZips()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '00000'],
-        'items' => ['0' => [], '1' => []]
+        'destination' => ['country' => 'US', 'postal_code' => '00000']
         ]);
 
     $this->assertEquals([], $actual);
