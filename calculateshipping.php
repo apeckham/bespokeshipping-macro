@@ -33,7 +33,7 @@ function calculateshipping($DATA) {
 				$matched = $range[0][0] <= $start_of_postal_code && $start_of_postal_code <= $range[0][1];
 			}
 
-			if ($matched) {
+			if ($matched && isset($prices[$zone])) {
 				return [array(
 		        "service_name" => "USPS Priority Mail",
 		        "service_code" => "USPS-ZONE-" . $zone,
