@@ -25,12 +25,12 @@ function calculateshipping($DATA) {
 			$range = array();
 			preg_match_all("/\d+/", $range_string, $range);
 
-			$postal_code_3 = substr($DATA['destination']['postal_code'], 0, strlen($range[0][0]));
+			$start_of_postal_code = substr($DATA['destination']['postal_code'], 0, strlen($range[0][0]));
 
 			if (count($range[0]) == 1) {
-				$matched = $range[0][0] == $postal_code_3;
+				$matched = $range[0][0] == $start_of_postal_code;
 			} else {
-				$matched = $range[0][0] <= $postal_code_3 && $postal_code_3 <= $range[0][1];
+				$matched = $range[0][0] <= $start_of_postal_code && $start_of_postal_code <= $range[0][1];
 			}
 
 			if ($matched) {
