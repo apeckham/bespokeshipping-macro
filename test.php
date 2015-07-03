@@ -206,21 +206,21 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
   public function testUnservedZip()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '96939'],
-        'items' => []
-        ]);
-
-    $this->assertEquals([], $actual);
+    $this->assertNoShipping('96939');
   }
 
   public function testInvalidZip()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '00000'],
-        'items' => []
-        ]);
+      $this->assertNoShipping('00000');
+  }
+  
+  public function assertNoShipping($postal_code)
+  {
+      $actual = calculateshipping([
+          'destination' => ['country' => 'US', 'postal_code' => $postal_code],
+          'items' => []
+          ]);
 
-    $this->assertEquals([], $actual);
+      $this->assertEquals([], $actual);
   }
 }
