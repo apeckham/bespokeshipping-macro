@@ -12,7 +12,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function testZone8_90210()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '90210']
+        'destination' => ['country' => 'US', 'postal_code' => '90210'],
+        'items' => [[]]
         ]);
 
     $this->assertEquals([[
@@ -26,7 +27,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function testZone3_10001()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '10001']
+        'destination' => ['country' => 'US', 'postal_code' => '10001'],
+        'items' => [[]]
         ]);
 
     $this->assertEquals([[
@@ -40,7 +42,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function testZone8()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '96962']
+        'destination' => ['country' => 'US', 'postal_code' => '96962'],
+        'items' => [[]]
         ]);
 
     $this->assertEquals([[
@@ -54,7 +57,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function testZone3()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '44113']
+        'destination' => ['country' => 'US', 'postal_code' => '44113'],
+        'items' => [[]]
         ]);
 
     $this->assertEquals([[
@@ -68,7 +72,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
   public function testZone1()
   {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '14607']
+        'destination' => ['country' => 'US', 'postal_code' => '14607'],
+        'items' => [[]]
         ]);
 
     $this->assertEquals([[
