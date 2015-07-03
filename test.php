@@ -3,224 +3,107 @@ require './calculateshipping.php';
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-  public function testAU() {
-    $this->assertEquals([], calculateshipping([
-          'destination' => ['country' => 'AU']
-          ]));
-  }
-
   public function testZone8_90210()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '90210'],
-        'items' => [[]]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-8',
-        'total_price' => 997,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-8', 997, '90210', 1);
   }
 
   public function testZone3_10001()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '10001'],
-        'items' => [[]]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-3',
-        'total_price' => 544,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-3', 544, '10001', 1);
   }
 
   public function testZone8()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '96962'],
-        'items' => [[]]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-8',
-        'total_price' => 997,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-8', 997, '96962', 1);
   }
 
   public function testZone3()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '44113'],
-        'items' => [[]]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-3',
-        'total_price' => 544,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-3', 544, '44113', 1);
   }
 
   public function testZone1()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '14607'],
-        'items' => [[]]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-1',
-        'total_price' => 532,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-1', 532, '14607', 1);
   }
 
   public function testZone2_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '13000'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-2',
-        'total_price' => 616,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-2', 616, '13000', 2);
   }
 
   public function testZone3_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '44113'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-3',
-        'total_price' => 725,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-3', 725, '44133', 2);
   }
 
   public function testZone4_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '28203'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-4',
-        'total_price' => 810,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-4', 810, '28203', 2);
   }
 
   public function testZone5_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '32209'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-5',
-        'total_price' => 1066,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-5', 1066, '32209', 2);
   }
 
   public function testZone6_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '75201'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-6',
-        'total_price' => 1337,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-6', 1337, '75201', 2);
   }
 
   public function testZone7_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '77900'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-7',
-        'total_price' => 1628,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-7', 1628, '77900', 2);
   }
 
   public function testZone8_twoItems()
   {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '90001'],
-        'items' => [[], []]
-        ]);
-
-    $this->assertEquals([[
-        'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-8',
-        'total_price' => 1628,
-        'currency' => 'USD'
-        ]], $actual);
+    $this->assertShipping('USPS-ZONE-8', 1628, '90001', 2);
   }
 
   public function testZone1_twoItems()
   {
+    $this->assertShipping('USPS-ZONE-1', 616, '14607', 2);
+  }
+  
+  public function assertShipping($service_code, $total_price, $postal_code, $items_count)
+  {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => '14607'],
-        'items' => [[], []]
+        'destination' => ['country' => 'US', 'postal_code' => $postal_code],
+        'items' => array_fill(0, $items_count, [])
         ]);
 
     $this->assertEquals([[
         'service_name' => 'USPS Priority Mail',
-        'service_code' => 'USPS-ZONE-1',
-        'total_price' => 616,
+        'service_code' => $service_code,
+        'total_price' => $total_price,
         'currency' => 'USD'
         ]], $actual);
   }
 
   public function testUnservedZip()
   {
-    $this->assertNoShipping('96939');
+    $this->assertNoShipping('US', '96939');
   }
 
   public function testInvalidZip()
   {
-      $this->assertNoShipping('00000');
+    $this->assertNoShipping('US', '00000');
+  }
+
+  public function testAU() {
+    $this->assertNoShipping('AU', null);
   }
   
-  public function assertNoShipping($postal_code)
+  public function assertNoShipping($country, $postal_code)
   {
-      $actual = calculateshipping([
-          'destination' => ['country' => 'US', 'postal_code' => $postal_code],
-          'items' => []
-          ]);
+    $actual = calculateshipping([
+        'destination' => ['country' => $country, 'postal_code' => $postal_code],
+        'items' => []
+        ]);
 
-      $this->assertEquals([], $actual);
+    $this->assertEquals([], $actual);
   }
 }
