@@ -10,3 +10,6 @@ sudo mv phpunit.phar /usr/local/bin/phpunit
 phpunit --version
 
 phpunit test.php
+
+sed 1d calculateshipping.php | pbcopy
+# paste into https://urbandictionary.myshopify.com/admin/apps/custom-shipping-rates
