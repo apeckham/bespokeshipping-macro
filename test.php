@@ -54,6 +54,15 @@ class TestCase extends \PHPUnit_Framework_TestCase {
     $this->assertShipping('USPS-ZONE-1', 616, '14607', 2);
   }
   
+  public function test_threeItems() {
+    $actual = calculateshipping([
+        'destination' => ['country' => 'US', 'postal_code' => 90210],
+        'items' => array_fill(0, 3, [])
+        ]);
+
+    $this->assertEquals([], $actual);
+  }
+  
   public function assertShipping($service_code, $total_price, $postal_code, $items_count) {
     $actual = calculateshipping([
         'destination' => ['country' => 'US', 'postal_code' => $postal_code],

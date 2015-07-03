@@ -21,14 +21,15 @@ function calculateshipping($DATA) {
     "8" => ["997", "1628"]
       ];
 
-  if ($DATA['destination']['country'] == 'US') {
+  $items_count = count($DATA['items']);
+  
+  if ($DATA['destination']['country'] == 'US' && $items_count <= 2) {
     foreach ($zones as list($range_string, $zone)) {
       $range = array();
       preg_match_all("/\d+/", $range_string, $range);
 
       $length = preg_match_all("/./", $range[0][0]);
       $start_of_postal_code = substr($DATA['destination']['postal_code'], 0, $length);
-      $items_count = count($DATA['items']);
 
       if (count($range[0]) == 1) {
         $matched = $range[0][0] == $start_of_postal_code;
@@ -40,7 +41,7 @@ function calculateshipping($DATA) {
         return [array(
             "service_name" => "USPS Priority Mail",
             "service_code" => "USPS-ZONE-" . $zone,
-            "total_price" => $prices[$zone][$items_count == 1 ? 0 : 1],
+            "total_price" => $prices[$zone][$items_count - 1],
             "currency" => "USD"
             )];
       }
