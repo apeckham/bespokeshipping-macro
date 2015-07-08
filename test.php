@@ -26,10 +26,21 @@ class TestCase extends \PHPUnit_Framework_TestCase {
     $this->assertShipping(8, 1628, 90001, 2);
   }
   
+  public function testShippingThreeItems() {
+    $this->assertShipping(1, 727, 14607, 3);
+    $this->assertShipping(2, 727, 13000, 3);
+    $this->assertShipping(3, 775, 44133, 3);
+    $this->assertShipping(4, 905, 28203, 3);
+    $this->assertShipping(5, 1299, 32209, 3);
+    $this->assertShipping(6, 1891, 75201, 3);
+    $this->assertShipping(7, 2427, 77900, 3);
+    $this->assertShipping(8, 2427, 90001, 3);
+  }
+  
   public function testTooManyItems() {
     $actual = calculateshipping([
         'destination' => ['country' => 'US', 'postal_code' => 90210],
-        'items' => array_fill(0, 3, [])
+        'items' => array_fill(0, 4, [])
         ]);
 
     $this->assertEquals([], $actual);
