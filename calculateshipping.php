@@ -21,9 +21,10 @@ function calculateshipping($DATA) {
     "8" => ["997", "1628", "2427", "3030"]
       ];
 
-  $items_count = count($DATA['items']);
-  
-  if ($DATA['destination']['country'] == 'US' && $items_count <= count($prices["1"])) {
+  if ($DATA['destination']['country'] == 'US'
+    && count($DATA['items']) == 1
+    && $DATA['items'][0]['quantity'] <= count($prices["1"])
+  ) {
     foreach ($zones as list($range_string, $zone)) {
       $range = array();
       preg_match_all("/\d+/", $range_string, $range);
@@ -41,7 +42,7 @@ function calculateshipping($DATA) {
         return [array(
             "service_name" => "USPS Priority Mail",
             "service_code" => "USPS-ZONE-" . $zone,
-            "total_price" => $prices[$zone][$items_count - 1],
+            "total_price" => $prices[$zone][$DATA['items'][0]['quantity'] - 1],
             "currency" => "USD"
             )];
       }

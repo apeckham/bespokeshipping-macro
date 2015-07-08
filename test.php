@@ -47,15 +47,6 @@ class TestCase extends \PHPUnit_Framework_TestCase {
     $this->assertShipping(7, 3030, 77900, 4);
     $this->assertShipping(8, 3030, 90001, 4);
   }
-  
-  public function testTooManyItems() {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => 90210],
-        'items' => array_fill(0, 5, [])
-        ]);
-
-    $this->assertEquals([], $actual);
-  }
 
   public function testUnservedZip() {
     $this->assertNoShipping('US', 96939);
@@ -69,10 +60,28 @@ class TestCase extends \PHPUnit_Framework_TestCase {
     $this->assertNoShipping('AU', null);
   }
   
+  public function testTooManyItems() {
+    $actual = calculateshipping([
+        'destination' => ['country' => 'US', 'postal_code' => 90210],
+        'items' => [['quantity' => 1], ['quantity' => 1]]
+        ]);
+
+    $this->assertEquals([], $actual);
+  }
+  
+  public function tooMuchQuantity() {
+    $actual = calculateshipping([
+        'destination' => ['country' => 'US', 'postal_code' => 90210],
+        'items' => [['quantity' => 5]]
+        ]);
+
+    $this->assertEquals([], $actual);
+  }
+  
   public function assertShipping($zone_number, $total_price, $postal_code, $items_count) {
     $actual = calculateshipping([
         'destination' => ['country' => 'US', 'postal_code' => $postal_code],
-        'items' => array_fill(0, $items_count, [])
+        'items' => [['quantity' => $items_count]]
         ]);
 
     $this->assertEquals([[
@@ -86,7 +95,7 @@ class TestCase extends \PHPUnit_Framework_TestCase {
   public function assertNoShipping($country, $postal_code) {
     $actual = calculateshipping([
         'destination' => ['country' => $country, 'postal_code' => $postal_code],
-        'items' => []
+        'items' => [['quantity' => 1]]
         ]);
 
     $this->assertEquals([], $actual);
