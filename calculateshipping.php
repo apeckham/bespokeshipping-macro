@@ -39,8 +39,15 @@ function calculateshipping($DATA) {
       }
 
       if ($matched && isset($prices[$zone])) {
+        $days = 2;
+        if ($zone == 2 || $zone == 1) {
+          $days = 1;
+        } else if ($zone == 8) {
+          $days = 3;
+        }
+        
         return [array(
-            "service_name" => "USPS Priority Mail",
+            "service_name" => "USPS Priority Mail (" . $days . "-day)",
             "service_code" => "USPS-ZONE-" . $zone,
             "total_price" => $prices[$zone][$DATA['items'][0]['quantity'] - 1],
             "currency" => "USD"
