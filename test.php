@@ -61,22 +61,15 @@ class TestCase extends \PHPUnit_Framework_TestCase {
     $this->assertNoShipping('AU', 'USPS Priority Mail (2-day)');
   }
   
-  public function testTooManyItems() {
+  public function testTooMuchQuantity() {
     $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => 90210],
-        'items' => [['quantity' => 1], ['quantity' => 1]]
+        'destination' => ['country' => 'US', 'postal_code' => '90210'],
+        'items' => [['quantity' => 6]]
         ]);
 
-    $this->assertEquals([], $actual);
-  }
-  
-  public function tooMuchQuantity() {
-    $actual = calculateshipping([
-        'destination' => ['country' => 'US', 'postal_code' => 90210],
-        'items' => [['quantity' => 5]]
-        ]);
-
-    $this->assertEquals([], $actual);
+    $this->assertEquals(1, count($actual));
+    $this->assertEquals('USPS-ZONE-8', $actual[0]['service_code']);
+    $this->assertEquals(3030, $actual[0]['total_price']);
   }
   
   public function assertShipping($zone_number, $total_price, $postal_code, $items_count, $service_name) {
